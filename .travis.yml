@@ -1,7 +1,7 @@
 language: java
 
 jdk:
-  - oraclejdk8
+  - openjdk8
 
 env:
   - PROFILE=community
@@ -9,8 +9,8 @@ env:
 
 install: 
   - echo "travis_fold:start:install folding starts"
-  - mvn clean install -DskipTests -B -q -D$PROFILE
+  - mvn clean install -s maven-settings.xml -DskipTests -B -q -D$PROFILE
   - echo "travis_fold:end:install folding ends"
 
 script:
-  - mvn test -f tests/pom.xml -D$PROFILE -B -fae
+  - mvn -s maven-settings.xml test -f tests/pom.xml -D$PROFILE -B -fae
